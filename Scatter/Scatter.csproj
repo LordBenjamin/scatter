@@ -35,13 +35,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Web" />
-    <Reference Include="Mono.Posix" />
     <Reference Include="Yahoo.Yui.Compressor">
       <HintPath>..\Yahoo\Yahoo.Yui.Compressor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\MarkdownSharp-GithubCodeBlocks\MarkdownSharp.cs">
+      <Link>MarkdownSharp.cs</Link>
+    </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Generator.cs" />
@@ -80,10 +83,4 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\MarkdownSharp\MarkdownSharp\MarkdownSharp.csproj">
-      <Project>{37619116-cce8-465a-8b1f-081ca53364bb}</Project>
-      <Name>MarkdownSharp</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

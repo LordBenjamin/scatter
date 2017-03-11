@@ -1,0 +1,3 @@
+[submodule "MarkdownSharp-GithubCodeBlocks"]
+	path = MarkdownSharp-GithubCodeBlocks
+	url = https://github.com/KyleGobel/MarkdownSharp-GithubCodeBlocks.git
