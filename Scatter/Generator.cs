@@ -20,22 +20,24 @@ namespace SilentOrbit.Scatter
 		{
 			LoadData(site);
 
-			//Read templates
-			var indexTemplate = new IndexTemplate(site);
+            //Read templates
+            var siteIndexTemplate = new SiteIndexTemplate(site);
+            var indexTemplate = new IndexTemplate(site);
 
 			//Clean web target
 			FileManager.Clean(site.WebPath);
 			//Copy static: Done in calling bash script
 			FileManager.Clone(site.StaticPath, site.WebPath);
 
-			//Generate news
-			indexTemplate["site:news"] = GenerateNews(site);
+            //Generate news
+            siteIndexTemplate["site:news"] = GenerateNews(site);
+            indexTemplate["site:news"] = GenerateNews(site);
 
-			var pageTemplate = new PageTemplate(site);
+            var pageTemplate = new PageTemplate(site);
 			var postTemplate = new PostTemplate(site);
             
 			//Generate all files
-			GenerateIndex(indexTemplate, site);
+			GenerateIndex(siteIndexTemplate, site);
 			GenerateFeed(site);
 			foreach (Page p in site.Pages)
 				GeneratePage(site, p, pageTemplate, indexTemplate);
@@ -136,10 +138,10 @@ namespace SilentOrbit.Scatter
 			return news;
 		}
 
-		static void GenerateIndex(IndexTemplate template, Site site)
+		static void GenerateIndex(SiteIndexTemplate template, Site site)
 		{
 			var indexInstance = template.Create(site);
-			if (site.GetPage("index") != null)
+			if (site.GetPage("index") != null || File.Exists(Path.Combine(site.StaticPath, "index.html")))
 				return;
 
 			var compactPostTemplate = new CompactPostTemplate(site);

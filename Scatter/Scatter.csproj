@@ -51,6 +51,7 @@
     <Compile Include="Data\Site.cs" />
     <Compile Include="Data\DataFormatException.cs" />
     <Compile Include="FileManager.cs" />
+    <Compile Include="Templates\SiteIndexTemplate.cs" />
     <Compile Include="Templates\Template.cs" />
     <Compile Include="Templates\CompactPostTemplate.cs" />
     <Compile Include="Templates\PostTemplate.cs" />
