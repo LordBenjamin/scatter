@@ -1,7 +1,9 @@
 # Scatter
 Scatter is a static file generator for your blog.
 
-http://silentorbit.com/scatter/
+Originally written by Peter Hultqvist (http://silentorbit.com/scatter/).
+
+Forked so that I can make modifications necessary to generate my website as I wish.
 
 Features include
 
@@ -27,7 +29,7 @@ Directories with the same base name as page or post files contain additional fil
 
 # Source code, issues and contributions
 
-https://github.com/hultqvist/scatter
+Forked from https://github.com/hultqvist/scatter
 
 
   [1]: https://code.google.com/p/markdownsharp/
