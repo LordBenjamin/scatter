@@ -1,11 +1,8 @@
-using System;
-using System.IO;
+using Markdig;
 using SilentOrbit.Scatter.Data;
-using MarkdownSharp;
 
-namespace SilentOrbit.Scatter.Templates
-{
-	class FeedEntryTemplate : Template
+namespace SilentOrbit.Scatter.Templates {
+    class FeedEntryTemplate : Template
 	{
 		public FeedEntryTemplate(Site site) : base(site, "feed.entry.xml")
 		{
@@ -19,8 +16,8 @@ namespace SilentOrbit.Scatter.Templates
 			t["author"] = post.Author;
 			t["url"] = site.URL + post.Path;
 			t["updated"] = post.LastModified.ToUniversalTime().ToString("yyyy-MM-dd\\THH:mm:ss\\Z");
-			t["excerpt"] = Generator.Markdown.Transform(post.ExcerptMarkdown).Trim();
-			t["content"] = Generator.Markdown.Transform(post.Content).Trim();
+			t["excerpt"] = Markdown.ToHtml(post.ExcerptMarkdown).Trim();
+			t["content"] = Markdown.ToHtml(post.Content).Trim();
 			return t.ToHtml();
 		}
 	}

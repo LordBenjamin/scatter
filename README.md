@@ -7,7 +7,7 @@ Forked so that I can make modifications necessary to generate my website as I wi
 
 Features include
 
- * Markdown syntax for pages and blog posts using [MarkdownSharp][1]
+ * Markdown syntax for pages and blog posts using [Markdig][1]
  * Minify css and js using the [YUI compressor][2]
  * Generate precompressed versions for use in [nginx gzip-static][3].
  * [Web based editor][4] for local use, using [pagedown for live preview][5]
@@ -32,7 +32,7 @@ Directories with the same base name as page or post files contain additional fil
 Forked from https://github.com/hultqvist/scatter
 
 
-  [1]: https://code.google.com/p/markdownsharp/
+  [1]: https://github.com/lunet-io/markdig
   [2]: http://yuicompressor.codeplex.com/
   [3]: http://wiki.nginx.org/HttpGzipStaticModule
   [4]: http://silentorbit.com/notes/Edit/

@@ -2,20 +2,13 @@ using System;
 using System.IO;
 using SilentOrbit.Scatter.Data;
 using System.Text;
-using System.Web;
-using MarkdownSharp;
 using SilentOrbit.Scatter.Templates;
+using Markdig;
 
 namespace SilentOrbit.Scatter
 {
 	static class Generator
 	{
-		public static Markdown Markdown = new Markdown(new MarkdownOptions()
-		{
-			AutoHyperlink = true, 
-			LinkEmails = true
-		});
-
 		public static void Generate(Site site)
 		{
 			LoadData(site);

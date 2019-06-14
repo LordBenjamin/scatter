@@ -1,13 +1,12 @@
+using Markdig;
+using SilentOrbit.Scatter.Data;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Web;
-using System.Collections.Generic;
-using SilentOrbit.Scatter.Data;
 
-namespace SilentOrbit.Scatter.Templates
-{
-	class Template : Variables
+namespace SilentOrbit.Scatter.Templates {
+    class Template : Variables
 	{
 		public readonly List<TemplateItem> Items = new List<TemplateItem>();
 		protected Site site;
@@ -56,7 +55,7 @@ namespace SilentOrbit.Scatter.Templates
 				{
 					string mdpath = Path.Combine(site.DataPath, tagVal);
 					string text = File.ReadAllText(mdpath, Encoding.UTF8);
-					Items.Add(new TemplateItem(Html.Raw(Generator.Markdown.Transform(text))));
+					Items.Add(new TemplateItem(Html.Raw(Markdown.ToHtml(text))));
                     
 					DateTime fileTime = File.GetLastWriteTime(mdpath);
 					if (LastModified < fileTime)

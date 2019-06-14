@@ -1,10 +1,8 @@
-using System;
-using System.IO;
+using Markdig;
 using SilentOrbit.Scatter.Data;
 
-namespace SilentOrbit.Scatter.Templates
-{
-	class PostTemplate : Template
+namespace SilentOrbit.Scatter.Templates {
+    class PostTemplate : Template
 	{
 		public PostTemplate(Site site) : base(site, "BlogPost.html")
 		{
@@ -23,7 +21,7 @@ namespace SilentOrbit.Scatter.Templates
 			t["updated"] = post.LastModified.ToString("ddd dd MMM yyyy");
 			t["url"] = site.UrlPath + post.Path;
 			t["site:path"] = site.UrlPath;
-			t["contents"] = Html.Raw(Generator.Markdown.Transform(post.Content));
+			t["contents"] = Html.Raw(Markdown.ToHtml(post.Content));
 			return t.ToHtml();
 		}
 	}
