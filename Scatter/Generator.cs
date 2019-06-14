@@ -9,36 +9,36 @@ namespace SilentOrbit.Scatter
 {
 	static class Generator
 	{
-		public static void Generate(Site site)
+		public static void Generate(GeneratorContext context)
 		{
-			LoadData(site);
+			LoadData(context.Site);
 
             //Read templates
-            var siteIndexTemplate = new SiteIndexTemplate(site);
-            var indexTemplate = new IndexTemplate(site);
+            var siteIndexTemplate = new SiteIndexTemplate(context);
+            var indexTemplate = new IndexTemplate(context);
 
 			//Clean web target
-			FileManager.Clean(site.WebPath);
+			FileManager.Clean(context.Site.WebPath);
 			//Copy static: Done in calling bash script
-			FileManager.Clone(site.StaticPath, site.WebPath);
+			FileManager.Clone(context.Site.StaticPath, context.Site.WebPath);
 
             //Generate news
-            siteIndexTemplate["site:news"] = GenerateNews(site);
-            indexTemplate["site:news"] = GenerateNews(site);
+            siteIndexTemplate["site:news"] = GenerateNews(context.Site);
+            indexTemplate["site:news"] = GenerateNews(context.Site);
 
-            var pageTemplate = new PageTemplate(site);
-			var postTemplate = new PostTemplate(site);
+            var pageTemplate = new PageTemplate(context);
+			var postTemplate = new PostTemplate(context);
             
 			//Generate all files
-			GenerateIndex(siteIndexTemplate, site);
-			GenerateFeed(site);
-			foreach (Page p in site.Pages)
-				GeneratePage(site, p, pageTemplate, indexTemplate);
-			foreach (Post p in site.Posts)
-				GeneratePost(site, p, postTemplate, indexTemplate);
-			GenerateNewPostPageTemplate(site);
+			GenerateIndex(siteIndexTemplate, context);
+			GenerateFeed(context);
+			foreach (Page p in context.Site.Pages)
+				GeneratePage(context.Site, p, pageTemplate, indexTemplate);
+			foreach (Post p in context.Site.Posts)
+				GeneratePost(context.Site, p, postTemplate, indexTemplate);
+			GenerateNewPostPageTemplate(context.Site);
 
-			Compressor.CompressDirectoryRecursive(site.WebPath);
+			Compressor.CompressDirectoryRecursive(context.Site.WebPath);
 		}
 
 		static void LoadData(Site site)
@@ -131,26 +131,26 @@ namespace SilentOrbit.Scatter
 			return news;
 		}
 
-		static void GenerateIndex(SiteIndexTemplate template, Site site)
+		static void GenerateIndex(SiteIndexTemplate template, GeneratorContext context)
 		{
-			var indexInstance = template.Create(site);
-			if (site.GetPage("index") != null || File.Exists(Path.Combine(site.StaticPath, "index.html")))
+			var indexInstance = template.Create(context.Site);
+			if (context.Site.GetPage("index") != null || File.Exists(Path.Combine(context.Site.StaticPath, "index.html")))
 				return;
 
-			var compactPostTemplate = new CompactPostTemplate(site);
-			indexInstance["title"] = site.Title;
-			indexInstance["tabs"] = GenerateTabs(site, null, null);
+			var compactPostTemplate = new CompactPostTemplate(context);
+			indexInstance["title"] = context.Site.Title;
+			indexInstance["tabs"] = GenerateTabs(context.Site, null, null);
 			indexInstance["contents"] = new Html();
-			foreach (Post p in site.Posts)
+			foreach (Post p in context.Site.Posts)
 			{
-				indexInstance["contents"] += compactPostTemplate.Generate(site, p);
+				indexInstance["contents"] += compactPostTemplate.Generate(context.Site, p);
 			}
-			indexInstance.Write(Path.Combine(site.WebPath, "index.html"));
+			indexInstance.Write(Path.Combine(context.Site.WebPath, "index.html"));
 		}
 
-		static void GenerateFeed(Site site)
+		static void GenerateFeed(GeneratorContext context)
 		{
-			string feedDir = Path.Combine(site.WebPath, "feed");
+			string feedDir = Path.Combine(context.Site.WebPath, "feed");
 			Directory.CreateDirectory(feedDir);
 			using (TextWriter w = new StreamWriter(Path.Combine(feedDir, ".htaccess"), false, Encoding.ASCII))
 			{
@@ -158,19 +158,19 @@ namespace SilentOrbit.Scatter
 				w.WriteLine("ForceType application/atom+xml");
 				w.WriteLine("AddType application/atom+xml .atom");
 			}
-			var feedTemplate = new FeedTemplate(site);
-			var entryTemplate = new FeedEntryTemplate(site);
+			var feedTemplate = new FeedTemplate(context);
+			var entryTemplate = new FeedEntryTemplate(context);
 
 			//At least 5 posts and one month
 			Html entries = new Html();
 			int posts = 0;
 			DateTime expire = DateTime.Now.AddMonths(-1);
-			foreach (Post p in site.Posts)
+			foreach (Post p in context.Site.Posts)
 			{
 				if (posts > 5 && p.Date < expire && p.LastModified < expire)
 					continue;
 
-				entries += entryTemplate.Generate(site, p);
+				entries += entryTemplate.Generate(context.Site, p);
 
 				posts += 1;
 			}

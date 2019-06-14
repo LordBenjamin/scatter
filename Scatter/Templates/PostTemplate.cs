@@ -4,7 +4,7 @@ using SilentOrbit.Scatter.Data;
 namespace SilentOrbit.Scatter.Templates {
     class PostTemplate : Template
 	{
-		public PostTemplate(Site site) : base(site, "BlogPost.html")
+		public PostTemplate(GeneratorContext context) : base(context, "BlogPost.html")
 		{
 
 		}
@@ -21,7 +21,7 @@ namespace SilentOrbit.Scatter.Templates {
 			t["updated"] = post.LastModified.ToString("ddd dd MMM yyyy");
 			t["url"] = site.UrlPath + post.Path;
 			t["site:path"] = site.UrlPath;
-			t["contents"] = Html.Raw(Markdown.ToHtml(post.Content));
+			t["contents"] = Html.Raw(Markdown.ToHtml(post.Content, Context.Pipeline));
 			return t.ToHtml();
 		}
 	}

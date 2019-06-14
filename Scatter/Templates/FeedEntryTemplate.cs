@@ -4,7 +4,7 @@ using SilentOrbit.Scatter.Data;
 namespace SilentOrbit.Scatter.Templates {
     class FeedEntryTemplate : Template
 	{
-		public FeedEntryTemplate(Site site) : base(site, "feed.entry.xml")
+		public FeedEntryTemplate(GeneratorContext context) : base(context, "feed.entry.xml")
 		{
 		}
 
@@ -16,8 +16,8 @@ namespace SilentOrbit.Scatter.Templates {
 			t["author"] = post.Author;
 			t["url"] = site.URL + post.Path;
 			t["updated"] = post.LastModified.ToUniversalTime().ToString("yyyy-MM-dd\\THH:mm:ss\\Z");
-			t["excerpt"] = Markdown.ToHtml(post.ExcerptMarkdown).Trim();
-			t["content"] = Markdown.ToHtml(post.Content).Trim();
+			t["excerpt"] = Markdown.ToHtml(post.ExcerptMarkdown, Context.Pipeline).Trim();
+			t["content"] = Markdown.ToHtml(post.Content, Context.Pipeline).Trim();
 			return t.ToHtml();
 		}
 	}

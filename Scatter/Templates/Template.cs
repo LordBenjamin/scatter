@@ -9,14 +9,14 @@ namespace SilentOrbit.Scatter.Templates {
     class Template : Variables
 	{
 		public readonly List<TemplateItem> Items = new List<TemplateItem>();
-		protected Site site;
 		readonly string filename;
 
-		public Template(Site site, string filename)
+		public Template(GeneratorContext context, string filename)
 		{
-			this.site = site;
-			this.filename = filename;
-			string path = Path.Combine(site.TemplatePath, filename);
+            Context = context ?? throw new ArgumentNullException(nameof(context));
+            this.filename = filename;
+
+			string path = Path.Combine(context.Site.TemplatePath, filename);
 			string raw = File.ReadAllText(path, Encoding.UTF8);
 			LastModified = File.GetLastWriteTime(path);
 
@@ -53,9 +53,9 @@ namespace SilentOrbit.Scatter.Templates {
 				//include .md tag contents
 				if (tagVal.EndsWith(".md"))
 				{
-					string mdpath = Path.Combine(site.DataPath, tagVal);
+					string mdpath = Path.Combine(context.Site.DataPath, tagVal);
 					string text = File.ReadAllText(mdpath, Encoding.UTF8);
-					Items.Add(new TemplateItem(Html.Raw(Markdown.ToHtml(text))));
+					Items.Add(new TemplateItem(Html.Raw(Markdown.ToHtml(text, context.Pipeline))));
                     
 					DateTime fileTime = File.GetLastWriteTime(mdpath);
 					if (LastModified < fileTime)
@@ -71,7 +71,9 @@ namespace SilentOrbit.Scatter.Templates {
 			}
 		}
 
-		public override string ToString()
+        public GeneratorContext Context { get; }
+
+        public override string ToString()
 		{
 			return filename;
 		}

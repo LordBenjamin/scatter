@@ -6,7 +6,7 @@ namespace SilentOrbit.Scatter.Templates
 {
 	class SiteIndexTemplate : Template
 	{
-		public SiteIndexTemplate(Site site) : base(site, "siteindex.html")
+		public SiteIndexTemplate(GeneratorContext context) : base(context, "siteindex.html")
 		{
 		}
 
