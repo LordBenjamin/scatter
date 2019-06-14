@@ -5,5 +5,6 @@ bin/
 *.suo
 obj/
 sync
+.vs/
 
 /Scatter/*.user
