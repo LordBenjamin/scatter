@@ -1,15 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>2.0.0</ProductVersion>
     <OutputType>Exe</OutputType>
     <RootNamespace>SilentOrbit.Scatter</RootNamespace>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <AssemblyTitle>Scatter</AssemblyTitle>
     <Copyright>Peter Hultqvist 2013</Copyright>
-    <AssemblyVersion>1.0.*</AssemblyVersion>
-    <FileVersion>1.0.*</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
     <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>False</ConsolePause>
+    <Version>2.0.0</Version>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug</OutputPath>
