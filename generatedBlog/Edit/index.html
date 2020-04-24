@@ -4,9 +4,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Edit that page</title>
 	<link rel="stylesheet" href="./style.css" type="text/css" />
+	<!-- The line below is only here to make the sample work on local disk, can safely be removed -->
 	<link rel="stylesheet" href="../style.css" type="text/css" />
 	<link rel="alternate" type="application/atom+xml" title="Subscribe to new posts" href="./feed/" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+	
 </head>
 <body>
 <header>
@@ -24,28 +26,23 @@
 	</header>
 	<section>
 		<div id="editor">
-    <div>
-        <input type="file" id="file" size="0">
-        <input id="filename" name="filename" size="15">
-        <a href="#" id="link">saved here</a>
-    </div>
-    <div id="wmd-button-bar"></div>
-    <div class="markdown-frame">
-        <textarea class="wmd-input" id="wmd-input" name="wmd-input"></textarea>
-    </div>
-    </form>
+	<div>
+		<input type="file" id="file" size="0">
+		<input id="filename" name="filename" size="15">
+		<a href="#" id="link">saved here</a>
+	</div>
+	<div id="wmd-button-bar"></div>
+	<div class="markdown-frame">
+		<textarea class="wmd-input" id="wmd-input" name="wmd-input"></textarea>
+	</div>
+	</form>
 </div>
-
 <div id="preview">
-    <div id="wmd-preview"></div>
+	<div id="wmd-preview"></div>
 </div>
-
 <script src="pagedown/Markdown.Converter.js"></script>
-
 <script src="pagedown/Markdown.Sanitizer.js"></script>
-
 <script src="pagedown/Markdown.Editor.js"></script>
-
 <script src="edit.js"></script>
 
 	</section>

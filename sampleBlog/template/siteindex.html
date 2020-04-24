@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ben Owen</title>
+  <meta name="description" content="">
+  <meta name="author" content="Ben Owen">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" type="text/css">
+  <link rel="stylesheet" href="<:site:path:>css/normalize.css">
+  <link rel="stylesheet" href="<:site:path:>css/skeleton.css">
+  <link rel="stylesheet" href="<:site:path:>css/font-awesome.min.css">
+  <link rel="stylesheet" href="<:site:path:>css/custom.css">
+  <link rel="icon" type="image/png" href="<:site:path:>images/favicon.png">
+	<link rel="alternate" type="application/atom+xml" title="Subscribe to new posts" href="<:site:path:>feed/" />
+  <style type="text/css">
+    section.summary h1 {
+      font-size: 3.0rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" style="margin-top: 5%;">
+    <header class="row">
+      <div class="two columns" style="padding-right: 20px">
+        <img src="<:site:path:>images/header.jpg" style="width: 80px; display: block;" class="circle" />
+      </div>
+      <div class="ten columns">
+          <h1 style="margin-bottom: 0.1rem;">Ben Owen</h1>
+          <h6 style="margin-left: 0.27rem;">Full time nerd. Professional eater of cake.</h6>
+      </div>
+    </header>
+
+    <div class="row" style="margin-top: 10%">
+      <div class="one-third column">
+        <a class="icon-wrapper" href="https://www.benjaminowen.dev/">
+          <i class="fa fa-code fa-5x" aria-hidden="true" style="margin-top:-11px; margin-bottom:11px"></i>
+          <h6>Software<br/>Engineer</h6>
+        </a>
+      </div>
+      <div class="one-third column">
+        <a class="icon-wrapper" href="https://www.flickr.com/photos/the401kill/">
+          <i class="fa fa-camera fa-5x" aria-hidden="true"></i>
+          <h6>Photographer</h6>
+         </a>
+      </div>
+      <div class="one-third column">
+        <a class="icon-wrapper-left" href="https://www.instagram.com/_benjaminowen/">
+          <i class="fa fa-instagram" aria-hidden="true"></i> Instagram
+         </a>
+        <a class="icon-wrapper-left" href="https://twitter.com/_benjaminowen">
+          <i class="fa fa-twitter" aria-hidden="true"></i> Twitter
+         </a>
+        <a class="icon-wrapper-left" href="https://github.com/LordBenjamin">
+          <i class="fa fa-github" aria-hidden="true"></i> GitHub
+         </a>
+         <a class="icon-wrapper-left" href="https://www.linkedin.com/benjaminowen2/">
+           <i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 10%">
+      <div class="six columns">
+        <h4>Latest Blog Posts</h4>
+        <:contents:>
+      </div>
+      <div class="six columns">
+        <h4>Latest Flickr Photo</h4>
+        <div id="photo"></div>
+        <p><a href="https://www.flickr.com/photos/the401kill/">See More »</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="<:site:path:>scripts/photo-feed.js" type="text/javascript">
+  </script>
+
+  <script type="text/javascript">
+    (function() {
+      var feed = new PhotoFeed('41939696%40N08', 'photo');
+      feed.writePhoto();
+     })();
+  </script>
+</body>
+</html>
