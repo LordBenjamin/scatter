@@ -27,7 +27,9 @@ namespace SilentOrbit.Scatter.Data
         /// </summary>
 		public string ExcerptMarkdown { get; set; }
 
-		public Post(string path) : base(path)
+		public MetaTagCollection MetaTags { get; } = new MetaTagCollection();
+
+        public Post(string path) : base(path)
 		{
 			Path = Date.ToString("yyyy/MM/") + HttpUtility.UrlEncode(Name) + "/";
 			Title = Title ?? Name;
@@ -55,6 +57,9 @@ namespace SilentOrbit.Scatter.Data
 					return;
 				case "title":
 					Title = value;
+					return;
+				case "meta":
+					MetaTags.Add(MetaTag.ParseFrontMatter(value));
 					return;
 			}
 			throw new DataFormatException("Unkown key: " + key);

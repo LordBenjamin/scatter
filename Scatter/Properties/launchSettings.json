@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Scatter": {
+      "commandName": "Project",
+      "commandLineArgs": "..\\..\\..\\..\\sampleBlog"
+    }
+  }
+}

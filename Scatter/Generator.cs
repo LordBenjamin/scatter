@@ -190,6 +190,7 @@ namespace SilentOrbit.Scatter
 			indexInstance["title"] = p.Title;
 			indexInstance["tabs"] = GenerateTabs(site, p, null);
 			indexInstance["contents"] = pageTemplate.Generate(site, p);
+			indexInstance["metatags"] = Html.Raw(p.MetaTags.ToHtml(indexInstance));
 			indexInstance.Write(Path.Combine(dirPath, "index.html"));
 		}
 
@@ -203,8 +204,11 @@ namespace SilentOrbit.Scatter
 
 			var inst = indexTemplate.Create(site);
 			inst["title"] = p.Title;
+			inst["author"] = p.Author;
+			inst["date"] = p.Date.ToString("yyyy-MM-dd hh:mm:ss");
 			inst["tabs"] = GenerateTabs(site, null, p);
 			inst["contents"] = postTemplate.Generate(site, p);
+			inst["metatags"] = Html.Raw(p.MetaTags.ToHtml(inst));
 			inst.Write(htmlPath);
 		}
 

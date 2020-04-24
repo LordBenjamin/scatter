@@ -36,6 +36,7 @@ namespace SilentOrbit.Scatter.Data
 		{
 			return new Html(html, DateTime.MinValue);
 		}
+
         /// <summary>
         /// 
         /// </summary>
@@ -45,7 +46,7 @@ namespace SilentOrbit.Scatter.Data
         /// <param name='modified'>
         /// Timestamp of when the html was last modified
         /// </param>
-		public static Html Raw(string html, DateTime modified)
+        public static Html Raw(string html, DateTime modified)
 		{
 			return new Html(html, modified);
 		}

@@ -27,6 +27,7 @@ namespace SilentOrbit.Scatter.Data
         /// Order in which to be displayed
         /// </summary>
 		public string Index { get; set; }
+		public MetaTagCollection MetaTags { get; } = new MetaTagCollection();
 
 		public Page(string basePath, string path) : base(path)
 		{
@@ -57,6 +58,9 @@ namespace SilentOrbit.Scatter.Data
 					return;
 				case "index":
 					Index = value;
+					return;
+				case "meta":
+					MetaTags.Add(MetaTag.ParseFrontMatter(value));
 					return;
 			}
 			throw new DataFormatException("Unkown key: " + key);
