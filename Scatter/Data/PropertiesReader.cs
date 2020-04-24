@@ -43,6 +43,11 @@ namespace SilentOrbit.Scatter.Data
 					if (line == "")
 						break;
 
+					if(line == "---")
+					{
+						continue;
+					}
+
 					string[] headerParts = line.Split(new char[] { ':' }, 2);
 					if (headerParts.Length != 2)
 						throw new InvalidDataException("Expected \"key: value\", got " + line);

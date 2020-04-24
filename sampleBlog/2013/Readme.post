@@ -1,6 +1,11 @@
+---
 Date: 2013-05-24
 Author: your name
 Title: README
+Meta: "Scatter:Author" : "{author}"
+Meta: "Scatter:Date" : "{date}"
+Meta: "Scatter:Title" : "{title}"
+---
 
 # Scatter
 Scatter is a static file generator for your blog.
